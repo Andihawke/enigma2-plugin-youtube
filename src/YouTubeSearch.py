@@ -50,33 +50,34 @@ class YouTubeSearch(Screen, ConfigListScreen):
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
-		skin = """<screen position="center,225" size="945,555">
-				<widget name="config" position="22,22" size="900,45" zPosition="2" \
+		skin = """<screen position="center,center" size="1280,560" flags="wfNoBorder">
+                                <widget source="global.CurrentTime" render="Label" position="1054,0" size="200,110" zPosition="5" font="global_clock; 60" valign="center" halign="right" foregroundColor="layer-a-clock-foreground" transparent="1">
+                                        <convert type="ClockToText">Default</convert>
+                                </widget>
+                                <eLabel text="YouTube" zPosition="3" position="20,0" size="200,120" valign="center" font="SetrixHD; 52" foregroundColor="#00eea00a" />
+				<widget name="config" position="20,120" size="1240,45" zPosition="2" \
 					scrollbarMode="showNever" itemHeight="45" font="Regular;30" />
-				<widget source="list" render="Listbox" position="22,75" size="900,409" \
+				<widget source="list" render="Listbox" position="20,122" size="1240,360" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
-						{"template": [MultiContentEntryText(pos=(15,1), size=(870,45), \
+						{"template": [MultiContentEntryText(pos=(15,2), size=(1210,45), \
 							font=0, flags=RT_HALIGN_LEFT, text=0)],
 						"fonts": [gFont("Regular",30)],
 						"itemHeight": 45}
 					</convert>
 				</widget>
-				<ePixmap position="127,484" size="210,60" pixmap="skin_default/buttons/red.png" \
+				<eLabel position="35,500" size="9,60" backgroundColor="#00e61700" />
+                                <eLabel position="262,500" size="9,60" backgroundColor="#0061e500" />
+                                <eLabel position="489,500" size="9,60" backgroundColor="#00e5dd00" />
+				<widget source="key_red" render="Label" position="52,503" foregroundColor="#00eea00a" zPosition="7" size="150,45" \
+					valign="center" font="SetrixHD;33" transparent="0" />
+				<widget source="key_green" render="Label" position="279,503" foregroundColor="#00eea00a" zPosition="7" size="170,45" \
+					valign="center" font="SetrixHD;33" transparent="0" />
+				<widget source="key_yellow" render="Label" position="505,503" foregroundColor="#00eea00a" zPosition="7" size="150,45" \
+					valign="center" font="SetrixHD;33" transparent="0" />
+				<ePixmap position="1115,500" size="122,60" pixmap="MetrixHD/FHD/buttons/key_menu.png" \
 					transparent="1" alphatest="on" />
-				<ePixmap position="367,484" size="210,60" pixmap="skin_default/buttons/green.png" \
-					transparent="1" alphatest="on" />
-				<ePixmap position="608,484" size="210,60" pixmap="skin_default/buttons/yellow.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="127,485" zPosition="2" size="210,60" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_green" render="Label" position="367,485" zPosition="2" size="210,60" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_yellow" render="Label" position="608,485" zPosition="2" size="210,60" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<ePixmap position="847,502" size="53,38" pixmap="skin_default/buttons/key_menu.png" \
-					transparent="1" alphatest="on" />
-				<widget name="HelpWindow" position="600,810" size="1,1" zPosition="5" \
+				<widget name="HelpWindow" position="520,840" size="1,1" zPosition="5" \
 					pixmap="skin_default/vkey_icon.png" transparent="1" alphatest="on" />
 			</screen>"""
 	else:

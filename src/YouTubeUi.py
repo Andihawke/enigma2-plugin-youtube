@@ -1,7 +1,7 @@
 import os
 from twisted.web.client import downloadPage
 
-from enigma import ePicLoad, eServiceReference, eTimer, getDesktop
+from enigma import ePicLoad, eServiceReference, eTimer, getDesktop, gFont
 from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
 from Components.config import config, ConfigDirectory, ConfigSelection, \
@@ -209,38 +209,40 @@ class YouTubeMain(Screen):
 				<widget name="thumbnail" position="0,0" size="100,72" /> # Thumbnail size in list
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
-		skin = """<screen position="center,center" size="1095,771">
-				<widget name="text" position="22,0" size="1050,45" halign="center" font="Regular;36" />
-				<widget source="list" render="Listbox" position="22,48" size="1050,648" \
+		skin = """<screen position="center,center" size="1280,950" flags="wfNoBorder">
+                                <widget source="global.CurrentTime" render="Label" position="1054,0" size="200,110" zPosition="5" font="global_clock; 60" valign="center" halign="right" foregroundColor="layer-a-clock-foreground" transparent="1">
+                                        <convert type="ClockToText">Default</convert>
+                                </widget>
+                                <eLabel text="YouTube" zPosition="3" position="20,0" size="200,120" valign="center" font="SetrixHD; 52" foregroundColor="#00eea00a" />                                
+				<widget name="text" zPosition="10" transparent="1" position="340,0" size="600,120" halign="center" valign="center" font="SetrixHD;32" />
+				<widget source="list" render="Listbox" zPosition="1" position="20,120" size="1240,756" \
 					scrollbarMode="showOnDemand" >
 					<convert type="TemplatedMultiContent" >
 						{"template": [
-							MultiContentEntryPixmapAlphaTest(pos=(0,0), \
+							MultiContentEntryPixmapAlphaTest(pos=(10,0), \
 								size=(150,108), png=2), # Thumbnail
-							MultiContentEntryText(pos=(165,1), size=(862,78), \
+							MultiContentEntryText(pos=(175,0), size=(870,108), \
 								font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text=3), # Title
-							MultiContentEntryText(pos=(180, 75), size=(300,33), \
-								font=1, flags=RT_HALIGN_LEFT, text=4), # Views
-							MultiContentEntryText(pos=(540,75), size=(300,33), \
-								font=1, flags=RT_HALIGN_LEFT, text=5), # Duration
+							MultiContentEntryText(pos=(1005, 24), size=(200,30), \
+								font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=4), # Views
+							MultiContentEntryText(pos=(1005,54), size=(200,30), \
+								font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=5), # Duration
 							],
-						"fonts": [gFont("Regular",30), gFont("Regular",24)],
+						"fonts": [gFont("RegularLight",28), gFont("SetrixHD",24)],
 						"itemHeight": 108}
 					</convert>
 				</widget>
-				<widget name="info" position="75,718" size="53,38" pixmap="skin_default/buttons/key_info.png" \
-					transparent="1" alphatest="on" />
-				<widget name="red" position="322,707" size="210,60" pixmap="skin_default/buttons/red.png" \
-					transparent="1" alphatest="on" />
-				<widget name="green" position="563,707" size="210,60" pixmap="skin_default/buttons/green.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="322,714" zPosition="2" size="210,45" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget source="key_green" render="Label" position="563,714" zPosition="2" size="210,45" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
-				<widget name="menu" position="968,718" size="53,38" pixmap="skin_default/buttons/key_menu.png" \
-					transparent="1" alphatest="on" />
-				<widget name="thumbnail" position="0,0" size="150,108" /> # Thumbnail size in list
+				<eLabel position="35,890" size="9,60" backgroundColor="#00e61700" />
+                                <eLabel position="262,890" size="9,60" backgroundColor="#0061e500" />
+				<widget name="info" position="965,890" size="122,60" pixmap="MetrixHD/FHD/buttons/key_info.png" \
+					transparent="1" alphatest="on" zPosition="2" />
+				<widget source="key_red" render="Label" position="52,894" foregroundColor="#00eea00a" zPosition="7" size="150,45" \
+					valign="center" font="SetrixHD;33" transparent="0" />
+				<widget source="key_green" render="Label" position="279,894" foregroundColor="#00eea00a" zPosition="7" size="150,45" \
+					valign="center" font="SetrixHD;33" transparent="0" />
+				<widget name="menu" position="1115,890" size="122,60" pixmap="MetrixHD/FHD/buttons/key_menu.png" \
+					transparent="1" alphatest="on" zPosition="2" />
+				<widget name="thumbnail" position="10,0" size="150,108" /> # Thumbnail size in list
 			</screen>"""
 	else:
 		skin = """<screen position="center,center" size="630,370">
@@ -1324,19 +1326,22 @@ class YouTubeInfo(Screen):
 					valign="295" halign="center" font="Regular;22" transparent="1" />
 			</screen>"""
 	elif screenWidth and screenWidth == 1920:
-		skin = """<screen position="center,center" size="1095,636">
-				<widget name="title" position="22,0" size="1050,90" halign="center" font="Regular;36" />
-				<widget name="pic" position="30,105" size="320,180" transparent="1" alphatest="on" />
-				<widget name="description" position="380,105" size="670,453" font="Regular;24" />
-				<widget name="views" position="45,305" size="225,30" font="Regular;24" />
-				<widget name="duration" position="45,355" size="225,30" font="Regular;24" />
-				<widget name="likes" position="45,405" size="225,30" font="Regular;24" />
-				<widget name="dislikes" position="45,455" size="225,30" font="Regular;24" />
-				<widget name="published" position="45,505" size="335,30" font="Regular;24" />
-				<ePixmap position="442,565" size="210,60" pixmap="skin_default/buttons/red.png" \
-					transparent="1" alphatest="on" />
-				<widget source="key_red" render="Label" position="442,563" zPosition="2" size="210,60" \
-					valign="center" halign="center" font="Regular;33" transparent="1" />
+		skin = """<screen position="center,center" size="1280,950" flags="wfNoBorder">
+                                <widget source="global.CurrentTime" render="Label" position="1054,0" size="200,110" zPosition="5" font="global_clock; 60" valign="center" halign="right" foregroundColor="layer-a-clock-foreground" transparent="1">
+                                        <convert type="ClockToText">Default</convert>
+                                </widget>
+                                <eLabel text="YouTube" zPosition="3" position="20,0" size="200,120" valign="center" font="SetrixHD; 52" foregroundColor="#00eea00a" />
+                                <widget name="title" transparent="1" zPosition="10" position="240,0" size="800,120" halign="center" valign="center" font="SetrixHD;32" />
+				<widget name="pic" position="20,110" size="420,280" transparent="1" alphatest="on" />
+				<widget name="description" render="ScrollLabel" position="475,124" zPosition="1" size="785,756" font="RegularLight;28" />
+				<widget name="views" position="20,405" size="420,30" halign="right" font="SetrixHD;24" foregroundColor="#00eea00a" />
+				<widget name="duration" position="20,455" size="420,30" halign="right" font="SetrixHD;24" foregroundColor="#00eea00a" />
+				<widget name="likes" position="20,505" size="420,30" halign="right" font="SetrixHD;24" foregroundColor="#00eea00a" />
+				<widget name="dislikes" position="20,555" size="420,30" halign="right" font="SetrixHD;24" foregroundColor="#00eea00a" />
+				<widget name="published" position="20,605" size="420,30" halign="right" font="SetrixHD;24" foregroundColor="#00eea00a" />
+                                <eLabel position="35,890" size="9,60" backgroundColor="#00e61700" />
+                                <widget source="key_red" render="Label" position="52,894" foregroundColor="#00eea00a" zPosition="7" size="210,45" \
+					valign="center" font="SetrixHD;33" transparent="1" />
 			</screen>"""
 	else:
 		skin = """<screen position="center,center" size="630,370">
